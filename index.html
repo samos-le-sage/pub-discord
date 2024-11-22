@@ -17,83 +17,70 @@
         }
         #container {
             display: none;
-            background: rgba(18, 18, 18, 0.9);
+            background: rgba(18, 18, 18, 0.75);
             border-radius: 15px;
             padding: 20px;
             text-align: center;
             position: absolute;
             bottom: 5%;
-            width: 600px;
-            animation: pop-in 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            width: 700px;
+            height: 300px;
+            animation: pop-in-dynamic 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
             box-shadow: 0 0 20px 8px rgba(255, 165, 0, 0.8);
         }
         .logo-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
             align-items: center;
-            gap: 35px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .logo-container img {
-            width: 90px;
-            height: 90px;
-            opacity: 0;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
-            animation: spin-logo 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards, float 3s infinite alternate ease-in-out;
-        }
-        @keyframes spin-logo {
-            0% {
-                opacity: 0;
-                transform: scale(0.5) rotate(0deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(360deg);
-            }
-        }
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-10px);
-            }
+            width: 70px;
+            height: 70px;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+            animation: logo-appear 1.5s ease-in-out forwards;
         }
         .line {
-            height: 4px;
+            height: 5px;
             background: linear-gradient(90deg, #ff4500, #ffa500, #ff4500);
-            margin: 12px auto;
-            width: 0;
-            animation: trace-line 1s ease-in-out forwards;
-            box-shadow: 0 0 5px rgba(255, 69, 0, 0.6);
-        }
-        .line:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-        .line:nth-child(2) {
-            animation-delay: 0.4s;
-        }
-        .line:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-        @keyframes trace-line {
-            0% {
-                width: 0;
-            }
-            100% {
-                width: 100%;
-            }
+            margin: 10px auto;
+            width: 90%;
+            animation: trace-line 1.8s infinite alternate;
+            box-shadow: 0 0 8px rgba(255, 69, 0, 0.6);
         }
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: #fff;
-            text-shadow: 0 0 10px #fff, 0 0 20px #ff4500;
+            text-shadow: 0 0 10px #fff, 0 0 15px #ff4500;
             margin-top: 10px;
             opacity: 0;
-            background: linear-gradient(90deg, #ffa500, #ff4500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fade-in-text 2s ease-out forwards 0.8s, glow 1.5s infinite alternate;
+            animation: fade-in-text 1.2s ease-out forwards 0.8s;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #ffa500;
+            margin-top: 15px;
+            opacity: 0;
+            text-shadow: 0 0 10px #ffa500, 0 0 20px #ff4500;
+            animation: pop-in-text 1.5s ease-out forwards 1.2s;
+        }
+        #discord-command {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 10px;
+            opacity: 0;
+            animation: discord-command 2s ease-in-out forwards 1.8s;
+            text-shadow: 0 0 8px #ffa500, 0 0 16px #ff4500;
+        }
+        @keyframes logo-appear {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         @keyframes fade-in-text {
             0% {
@@ -104,23 +91,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 10px #ff4500;
-            }
-            100% {
-                text-shadow: 0 0 20px #ff4500, 0 0 30px #ffa500;
-            }
-        }
-        h2 {
-            font-size: 2rem;
-            color: #ff4500;
-            margin-top: 20px;
-            opacity: 0;
-            transform: scale(0.8);
-            text-shadow: 0 0 15px #ffa500;
-            animation: pop-in-text 2s ease-out forwards 1.2s;
         }
         @keyframes pop-in-text {
             0% {
@@ -135,14 +105,6 @@
                 transform: scale(1);
             }
         }
-        #discord-command {
-            font-size: 1.8rem;
-            color: #fff;
-            margin-top: 15px;
-            opacity: 0;
-            animation: discord-command 3s ease-in-out forwards 1.5s;
-            text-shadow: 0 0 8px #ffa500;
-        }
         @keyframes discord-command {
             0% {
                 opacity: 0;
@@ -156,24 +118,38 @@
                 transform: translateY(0) scale(1);
             }
         }
-        @keyframes pop-in {
+        @keyframes pop-in-dynamic {
             0% {
-                transform: scale(0.9);
+                transform: translateY(100%) scale(0.9);
                 opacity: 0;
             }
+            50% {
+                transform: translateY(-10%) scale(1.1);
+            }
             100% {
-                transform: scale(1);
+                transform: translateY(0) scale(1);
                 opacity: 1;
             }
         }
-        @keyframes pop-out {
+        @keyframes pop-out-dynamic {
             0% {
                 transform: scale(1);
                 opacity: 1;
             }
+            50% {
+                transform: translateY(20%) scale(0.9);
+            }
             100% {
-                transform: scale(0.9);
+                transform: translateY(100%) scale(0.8);
                 opacity: 0;
+            }
+        }
+        @keyframes trace-line {
+            0% {
+                transform: scaleX(0.2);
+            }
+            100% {
+                transform: scaleX(1);
             }
         }
     </style>
@@ -185,54 +161,28 @@
             <img src="https://static.vecteezy.com/ti/vecteur-libre/p1/6892625-discord-logo-icon-editorial-vector-gratuit-vectoriel.jpg" alt="Logo Discord">
         </div>
         <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <h1 id="dynamic-text"></h1>
+        <h1>Le Refuge 🐾</h1>
         <h2>Rejoins le Discord !!</h2>
-        <div id="discord-command">Fais la commande <strong>"!discord"</strong> dans le chat !</div>
+        <div id="discord-command">Faites la commande <strong>!discord</strong> dans le chat !</div>
         <div class="line"></div>
     </div>
 
     <script>
         const container = document.getElementById("container");
-        const text = document.getElementById("dynamic-text");
 
-        const dynamicText = "Le Refuge 🐾";
-        let textIndex = 0;
-
-        // Écriture progressive du texte
-        function typeText() {
-            if (textIndex < dynamicText.length) {
-                text.textContent += dynamicText.charAt(textIndex);
-                textIndex++;
-                setTimeout(typeText, 100);
-            }
-        }
-
-        // Animation principale
         function showAnimation() {
             container.style.display = "block";
-
-            // Lancer l'écriture du texte principal
-            setTimeout(typeText, 500);
-
-            // Disparition après 1 minute
+            container.style.animation = "pop-in-dynamic 1.2s forwards";
             setTimeout(() => {
-                container.style.animation = "pop-out 1s forwards";
-
-                container.querySelectorAll(".line").forEach(line => {
-                    line.style.animation = "trace-line 1s reverse forwards";
-                });
-
+                container.style.animation = "pop-out-dynamic 1.2s forwards";
                 setTimeout(() => {
                     container.style.display = "none";
-                }, 1000);
-            }, 60000);
+                }, 1200);
+            }, 60000); // Visible pendant 1 minute
         }
 
-        // Lancer l'animation toutes les 15 minutes
         showAnimation();
-        setInterval(showAnimation, 15 * 60 * 1000);
+        setInterval(showAnimation, 15 * 60 * 1000); // Relance toutes les 15 minutes
     </script>
 </body>
 </html>
